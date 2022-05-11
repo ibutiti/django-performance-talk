@@ -40,6 +40,7 @@ INSTALLED_APPS = [
     # deps
     "rest_framework",
     "silk",
+    "drf_spectacular",
     # apps
     "src",
 ]
@@ -60,9 +61,9 @@ REST_FRAMEWORK = {
         "rest_framework.renderers.JSONRenderer",
         "rest_framework.renderers.BrowsableAPIRenderer",
     ],
-    # 'DEFAULT_PAGINATION_CLASS': 'rest_framework.pagination.LimitOffsetPagination',
-    # 'PAGE_SIZE': 10
-
+    "DEFAULT_SCHEMA_CLASS": "drf_spectacular.openapi.AutoSchema",
+    "DEFAULT_PAGINATION_CLASS": "rest_framework.pagination.LimitOffsetPagination",
+    "PAGE_SIZE": 10,
 }
 
 ROOT_URLCONF = "warehouse.urls"

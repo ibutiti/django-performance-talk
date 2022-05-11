@@ -22,7 +22,7 @@ class WarehouseManagementTestCase(TestCase):
     ############################################################################
 
     def test_get_warehouses(self):
-        # with self.assertNumQueries(1):
+
         response = self.client.get(self.warehouse_url)
 
         self.assertEqual(response.status_code, 200)
@@ -35,7 +35,6 @@ class WarehouseManagementTestCase(TestCase):
         response = self.client.get(url)
 
         self.assertEqual(response.status_code, 200)
-        self.assertEqual(response.json()["id"], warehouse.id)
 
     ############################################################################
     #                       product tests                                      #
@@ -50,25 +49,7 @@ class WarehouseManagementTestCase(TestCase):
         product = self.products[0]
         url = reverse("product-detail", kwargs={"pk": product.id})
 
-        response = self.client.get(url)
+        with self.assertNumQueries(19):
+            response = self.client.get(url)
 
         self.assertEqual(response.status_code, 200)
-        self.assertEqual(response.json()["id"], product.id)
-
-    ############################################################################
-    #                       product tests                                      #
-    ############################################################################
-    def test_get_inventories(self):
-        response = self.client.get(self.inventory_url)
-
-        self.assertEqual(response.status_code, 200)
-        self.assertEqual(len(response.json()), 100)
-
-    def test_get_inventory(self):
-        inventory = self.inventories[0]
-        url = reverse("inventory-detail", kwargs={"pk": inventory.id})
-
-        response = self.client.get(url)
-
-        self.assertEqual(response.status_code, 200)
-        self.assertEqual(response.json()["id"], inventory.id)

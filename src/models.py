@@ -90,18 +90,27 @@ class Inventory(models.Model):
         unique_together = ("warehouse", "product")
 
     @property
-    def total_warehouse_inventory(self):
+    def _total_warehouse_inventory(self):
         """
-        Returns the total inventory of a product in a warehouse.
+        Inefficiently Returns the total inventory of a product in a warehouse.
         """
         movements = self.movements.all()
         total = 0
         for movement in movements:
-            total = (
+            total += (
                 total + movement.quantity
                 if movement.movement_type == InventoryMovementTypes.IN
                 else total - movement.quantity
             )
+
+        return total
+
+    @property
+    def total_warehouse_inventory(self):
+        """
+        Efficiently Returns the total inventory of a product in a warehouse.
+        """
+        total = self.movement.aggregate(models.Sum("quantity"))["quantity__sum"]
 
         return total
 

@@ -1,0 +1,977 @@
+openapi: 3.0.3
+info:
+  title: ''
+  version: 0.0.0
+paths:
+  /api/inventory/:
+    get:
+      operationId: inventory_list
+      parameters:
+      - name: limit
+        required: false
+        in: query
+        description: Number of results to return per page.
+        schema:
+          type: integer
+      - name: offset
+        required: false
+        in: query
+        description: The initial index from which to return the results.
+        schema:
+          type: integer
+      tags:
+      - inventory
+      security:
+      - cookieAuth: []
+      - basicAuth: []
+      - {}
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/PaginatedInventoryList'
+          description: ''
+    post:
+      operationId: inventory_create
+      tags:
+      - inventory
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Inventory'
+          application/x-www-form-urlencoded:
+            schema:
+              $ref: '#/components/schemas/Inventory'
+          multipart/form-data:
+            schema:
+              $ref: '#/components/schemas/Inventory'
+        required: true
+      security:
+      - cookieAuth: []
+      - basicAuth: []
+      - {}
+      responses:
+        '201':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Inventory'
+          description: ''
+  /api/inventory-movements/:
+    get:
+      operationId: inventory_movements_list
+      parameters:
+      - name: limit
+        required: false
+        in: query
+        description: Number of results to return per page.
+        schema:
+          type: integer
+      - name: offset
+        required: false
+        in: query
+        description: The initial index from which to return the results.
+        schema:
+          type: integer
+      tags:
+      - inventory-movements
+      security:
+      - cookieAuth: []
+      - basicAuth: []
+      - {}
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/PaginatedInventoryMovementList'
+          description: ''
+    post:
+      operationId: inventory_movements_create
+      tags:
+      - inventory-movements
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/InventoryMovement'
+          application/x-www-form-urlencoded:
+            schema:
+              $ref: '#/components/schemas/InventoryMovement'
+          multipart/form-data:
+            schema:
+              $ref: '#/components/schemas/InventoryMovement'
+        required: true
+      security:
+      - cookieAuth: []
+      - basicAuth: []
+      - {}
+      responses:
+        '201':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/InventoryMovement'
+          description: ''
+  /api/inventory-movements/{id}/:
+    get:
+      operationId: inventory_movements_retrieve
+      parameters:
+      - in: path
+        name: id
+        schema:
+          type: integer
+        description: A unique integer value identifying this inventory movement.
+        required: true
+      tags:
+      - inventory-movements
+      security:
+      - cookieAuth: []
+      - basicAuth: []
+      - {}
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/InventoryMovement'
+          description: ''
+    put:
+      operationId: inventory_movements_update
+      parameters:
+      - in: path
+        name: id
+        schema:
+          type: integer
+        description: A unique integer value identifying this inventory movement.
+        required: true
+      tags:
+      - inventory-movements
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/InventoryMovement'
+          application/x-www-form-urlencoded:
+            schema:
+              $ref: '#/components/schemas/InventoryMovement'
+          multipart/form-data:
+            schema:
+              $ref: '#/components/schemas/InventoryMovement'
+        required: true
+      security:
+      - cookieAuth: []
+      - basicAuth: []
+      - {}
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/InventoryMovement'
+          description: ''
+    patch:
+      operationId: inventory_movements_partial_update
+      parameters:
+      - in: path
+        name: id
+        schema:
+          type: integer
+        description: A unique integer value identifying this inventory movement.
+        required: true
+      tags:
+      - inventory-movements
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/PatchedInventoryMovement'
+          application/x-www-form-urlencoded:
+            schema:
+              $ref: '#/components/schemas/PatchedInventoryMovement'
+          multipart/form-data:
+            schema:
+              $ref: '#/components/schemas/PatchedInventoryMovement'
+      security:
+      - cookieAuth: []
+      - basicAuth: []
+      - {}
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/InventoryMovement'
+          description: ''
+    delete:
+      operationId: inventory_movements_destroy
+      parameters:
+      - in: path
+        name: id
+        schema:
+          type: integer
+        description: A unique integer value identifying this inventory movement.
+        required: true
+      tags:
+      - inventory-movements
+      security:
+      - cookieAuth: []
+      - basicAuth: []
+      - {}
+      responses:
+        '204':
+          description: No response body
+  /api/inventory/{id}/:
+    get:
+      operationId: inventory_retrieve
+      parameters:
+      - in: path
+        name: id
+        schema:
+          type: integer
+        description: A unique integer value identifying this inventory.
+        required: true
+      tags:
+      - inventory
+      security:
+      - cookieAuth: []
+      - basicAuth: []
+      - {}
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Inventory'
+          description: ''
+    put:
+      operationId: inventory_update
+      parameters:
+      - in: path
+        name: id
+        schema:
+          type: integer
+        description: A unique integer value identifying this inventory.
+        required: true
+      tags:
+      - inventory
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Inventory'
+          application/x-www-form-urlencoded:
+            schema:
+              $ref: '#/components/schemas/Inventory'
+          multipart/form-data:
+            schema:
+              $ref: '#/components/schemas/Inventory'
+        required: true
+      security:
+      - cookieAuth: []
+      - basicAuth: []
+      - {}
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Inventory'
+          description: ''
+    patch:
+      operationId: inventory_partial_update
+      parameters:
+      - in: path
+        name: id
+        schema:
+          type: integer
+        description: A unique integer value identifying this inventory.
+        required: true
+      tags:
+      - inventory
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/PatchedInventory'
+          application/x-www-form-urlencoded:
+            schema:
+              $ref: '#/components/schemas/PatchedInventory'
+          multipart/form-data:
+            schema:
+              $ref: '#/components/schemas/PatchedInventory'
+      security:
+      - cookieAuth: []
+      - basicAuth: []
+      - {}
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Inventory'
+          description: ''
+    delete:
+      operationId: inventory_destroy
+      parameters:
+      - in: path
+        name: id
+        schema:
+          type: integer
+        description: A unique integer value identifying this inventory.
+        required: true
+      tags:
+      - inventory
+      security:
+      - cookieAuth: []
+      - basicAuth: []
+      - {}
+      responses:
+        '204':
+          description: No response body
+  /api/products/:
+    get:
+      operationId: products_list
+      parameters:
+      - name: limit
+        required: false
+        in: query
+        description: Number of results to return per page.
+        schema:
+          type: integer
+      - name: offset
+        required: false
+        in: query
+        description: The initial index from which to return the results.
+        schema:
+          type: integer
+      tags:
+      - products
+      security:
+      - cookieAuth: []
+      - basicAuth: []
+      - {}
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/PaginatedSlimProductList'
+          description: ''
+    post:
+      operationId: products_create
+      tags:
+      - products
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Product'
+          application/x-www-form-urlencoded:
+            schema:
+              $ref: '#/components/schemas/Product'
+          multipart/form-data:
+            schema:
+              $ref: '#/components/schemas/Product'
+        required: true
+      security:
+      - cookieAuth: []
+      - basicAuth: []
+      - {}
+      responses:
+        '201':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Product'
+          description: ''
+  /api/products/{id}/:
+    get:
+      operationId: products_retrieve
+      parameters:
+      - in: path
+        name: id
+        schema:
+          type: integer
+        description: A unique integer value identifying this product.
+        required: true
+      tags:
+      - products
+      security:
+      - cookieAuth: []
+      - basicAuth: []
+      - {}
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Product'
+          description: ''
+    put:
+      operationId: products_update
+      parameters:
+      - in: path
+        name: id
+        schema:
+          type: integer
+        description: A unique integer value identifying this product.
+        required: true
+      tags:
+      - products
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Product'
+          application/x-www-form-urlencoded:
+            schema:
+              $ref: '#/components/schemas/Product'
+          multipart/form-data:
+            schema:
+              $ref: '#/components/schemas/Product'
+        required: true
+      security:
+      - cookieAuth: []
+      - basicAuth: []
+      - {}
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Product'
+          description: ''
+    patch:
+      operationId: products_partial_update
+      parameters:
+      - in: path
+        name: id
+        schema:
+          type: integer
+        description: A unique integer value identifying this product.
+        required: true
+      tags:
+      - products
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/PatchedProduct'
+          application/x-www-form-urlencoded:
+            schema:
+              $ref: '#/components/schemas/PatchedProduct'
+          multipart/form-data:
+            schema:
+              $ref: '#/components/schemas/PatchedProduct'
+      security:
+      - cookieAuth: []
+      - basicAuth: []
+      - {}
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Product'
+          description: ''
+    delete:
+      operationId: products_destroy
+      parameters:
+      - in: path
+        name: id
+        schema:
+          type: integer
+        description: A unique integer value identifying this product.
+        required: true
+      tags:
+      - products
+      security:
+      - cookieAuth: []
+      - basicAuth: []
+      - {}
+      responses:
+        '204':
+          description: No response body
+  /api/warehouses/:
+    get:
+      operationId: warehouses_list
+      parameters:
+      - name: limit
+        required: false
+        in: query
+        description: Number of results to return per page.
+        schema:
+          type: integer
+      - name: offset
+        required: false
+        in: query
+        description: The initial index from which to return the results.
+        schema:
+          type: integer
+      tags:
+      - warehouses
+      security:
+      - cookieAuth: []
+      - basicAuth: []
+      - {}
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/PaginatedSlimWarehouseList'
+          description: ''
+    post:
+      operationId: warehouses_create
+      tags:
+      - warehouses
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Warehouse'
+          application/x-www-form-urlencoded:
+            schema:
+              $ref: '#/components/schemas/Warehouse'
+          multipart/form-data:
+            schema:
+              $ref: '#/components/schemas/Warehouse'
+        required: true
+      security:
+      - cookieAuth: []
+      - basicAuth: []
+      - {}
+      responses:
+        '201':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Warehouse'
+          description: ''
+  /api/warehouses/{id}/:
+    get:
+      operationId: warehouses_retrieve
+      parameters:
+      - in: path
+        name: id
+        schema:
+          type: integer
+        description: A unique integer value identifying this warehouse.
+        required: true
+      tags:
+      - warehouses
+      security:
+      - cookieAuth: []
+      - basicAuth: []
+      - {}
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Warehouse'
+          description: ''
+    put:
+      operationId: warehouses_update
+      parameters:
+      - in: path
+        name: id
+        schema:
+          type: integer
+        description: A unique integer value identifying this warehouse.
+        required: true
+      tags:
+      - warehouses
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Warehouse'
+          application/x-www-form-urlencoded:
+            schema:
+              $ref: '#/components/schemas/Warehouse'
+          multipart/form-data:
+            schema:
+              $ref: '#/components/schemas/Warehouse'
+        required: true
+      security:
+      - cookieAuth: []
+      - basicAuth: []
+      - {}
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Warehouse'
+          description: ''
+    patch:
+      operationId: warehouses_partial_update
+      parameters:
+      - in: path
+        name: id
+        schema:
+          type: integer
+        description: A unique integer value identifying this warehouse.
+        required: true
+      tags:
+      - warehouses
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/PatchedWarehouse'
+          application/x-www-form-urlencoded:
+            schema:
+              $ref: '#/components/schemas/PatchedWarehouse'
+          multipart/form-data:
+            schema:
+              $ref: '#/components/schemas/PatchedWarehouse'
+      security:
+      - cookieAuth: []
+      - basicAuth: []
+      - {}
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Warehouse'
+          description: ''
+    delete:
+      operationId: warehouses_destroy
+      parameters:
+      - in: path
+        name: id
+        schema:
+          type: integer
+        description: A unique integer value identifying this warehouse.
+        required: true
+      tags:
+      - warehouses
+      security:
+      - cookieAuth: []
+      - basicAuth: []
+      - {}
+      responses:
+        '204':
+          description: No response body
+components:
+  schemas:
+    Inventory:
+      type: object
+      properties:
+        id:
+          type: integer
+          readOnly: true
+        warehouse:
+          type: integer
+        product:
+          type: integer
+        total_warehouse_inventory:
+          type: integer
+          readOnly: true
+        movements:
+          type: array
+          items:
+            $ref: '#/components/schemas/InventoryMovement'
+          readOnly: true
+      required:
+      - id
+      - movements
+      - product
+      - total_warehouse_inventory
+      - warehouse
+    InventoryMovement:
+      type: object
+      properties:
+        id:
+          type: integer
+          readOnly: true
+        inventory:
+          type: integer
+        quantity:
+          type: integer
+        movement_type:
+          $ref: '#/components/schemas/MovementTypeEnum'
+        timestamp:
+          type: string
+          format: date-time
+          readOnly: true
+      required:
+      - id
+      - inventory
+      - movement_type
+      - quantity
+      - timestamp
+    MovementTypeEnum:
+      enum:
+      - 1
+      - 0
+      type: integer
+    PaginatedInventoryList:
+      type: object
+      properties:
+        count:
+          type: integer
+          example: 123
+        next:
+          type: string
+          nullable: true
+          format: uri
+          example: http://api.example.org/accounts/?offset=400&limit=100
+        previous:
+          type: string
+          nullable: true
+          format: uri
+          example: http://api.example.org/accounts/?offset=200&limit=100
+        results:
+          type: array
+          items:
+            $ref: '#/components/schemas/Inventory'
+    PaginatedInventoryMovementList:
+      type: object
+      properties:
+        count:
+          type: integer
+          example: 123
+        next:
+          type: string
+          nullable: true
+          format: uri
+          example: http://api.example.org/accounts/?offset=400&limit=100
+        previous:
+          type: string
+          nullable: true
+          format: uri
+          example: http://api.example.org/accounts/?offset=200&limit=100
+        results:
+          type: array
+          items:
+            $ref: '#/components/schemas/InventoryMovement'
+    PaginatedSlimProductList:
+      type: object
+      properties:
+        count:
+          type: integer
+          example: 123
+        next:
+          type: string
+          nullable: true
+          format: uri
+          example: http://api.example.org/accounts/?offset=400&limit=100
+        previous:
+          type: string
+          nullable: true
+          format: uri
+          example: http://api.example.org/accounts/?offset=200&limit=100
+        results:
+          type: array
+          items:
+            $ref: '#/components/schemas/SlimProduct'
+    PaginatedSlimWarehouseList:
+      type: object
+      properties:
+        count:
+          type: integer
+          example: 123
+        next:
+          type: string
+          nullable: true
+          format: uri
+          example: http://api.example.org/accounts/?offset=400&limit=100
+        previous:
+          type: string
+          nullable: true
+          format: uri
+          example: http://api.example.org/accounts/?offset=200&limit=100
+        results:
+          type: array
+          items:
+            $ref: '#/components/schemas/SlimWarehouse'
+    PatchedInventory:
+      type: object
+      properties:
+        id:
+          type: integer
+          readOnly: true
+        warehouse:
+          type: integer
+        product:
+          type: integer
+        total_warehouse_inventory:
+          type: integer
+          readOnly: true
+        movements:
+          type: array
+          items:
+            $ref: '#/components/schemas/InventoryMovement'
+          readOnly: true
+    PatchedInventoryMovement:
+      type: object
+      properties:
+        id:
+          type: integer
+          readOnly: true
+        inventory:
+          type: integer
+        quantity:
+          type: integer
+        movement_type:
+          $ref: '#/components/schemas/MovementTypeEnum'
+        timestamp:
+          type: string
+          format: date-time
+          readOnly: true
+    PatchedProduct:
+      type: object
+      properties:
+        id:
+          type: integer
+          readOnly: true
+        name:
+          type: string
+          maxLength: 100
+        description:
+          type: string
+        volume:
+          type: integer
+        total_inventory:
+          type: integer
+          readOnly: true
+        inventories:
+          type: array
+          items:
+            $ref: '#/components/schemas/Inventory'
+          readOnly: true
+    PatchedWarehouse:
+      type: object
+      properties:
+        id:
+          type: integer
+          readOnly: true
+        name:
+          type: string
+          maxLength: 100
+        city:
+          type: string
+          maxLength: 100
+        capacity:
+          type: integer
+        occupied_capacity:
+          type: integer
+          readOnly: true
+        available_capacity:
+          type: integer
+          readOnly: true
+        inventories:
+          type: array
+          items:
+            $ref: '#/components/schemas/Inventory'
+          readOnly: true
+    Product:
+      type: object
+      properties:
+        id:
+          type: integer
+          readOnly: true
+        name:
+          type: string
+          maxLength: 100
+        description:
+          type: string
+        volume:
+          type: integer
+        total_inventory:
+          type: integer
+          readOnly: true
+        inventories:
+          type: array
+          items:
+            $ref: '#/components/schemas/Inventory'
+          readOnly: true
+      required:
+      - description
+      - id
+      - inventories
+      - name
+      - total_inventory
+      - volume
+    SlimProduct:
+      type: object
+      properties:
+        id:
+          type: integer
+          readOnly: true
+        name:
+          type: string
+          maxLength: 100
+        description:
+          type: string
+        volume:
+          type: integer
+      required:
+      - description
+      - id
+      - name
+      - volume
+    SlimWarehouse:
+      type: object
+      properties:
+        id:
+          type: integer
+          readOnly: true
+        name:
+          type: string
+          maxLength: 100
+        city:
+          type: string
+          maxLength: 100
+      required:
+      - city
+      - id
+      - name
+    Warehouse:
+      type: object
+      properties:
+        id:
+          type: integer
+          readOnly: true
+        name:
+          type: string
+          maxLength: 100
+        city:
+          type: string
+          maxLength: 100
+        capacity:
+          type: integer
+        occupied_capacity:
+          type: integer
+          readOnly: true
+        available_capacity:
+          type: integer
+          readOnly: true
+        inventories:
+          type: array
+          items:
+            $ref: '#/components/schemas/Inventory'
+          readOnly: true
+      required:
+      - available_capacity
+      - capacity
+      - city
+      - id
+      - inventories
+      - name
+      - occupied_capacity
+  securitySchemes:
+    basicAuth:
+      type: http
+      scheme: basic
+    cookieAuth:
+      type: apiKey
+      in: cookie
+      name: sessionid

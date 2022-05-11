@@ -36,7 +36,6 @@ class InventorySerializer(serializers.ModelSerializer):
 
 
 class SlimInventorySerializer(serializers.ModelSerializer):
-
     class Meta:
         model = Inventory
         fields = (
@@ -65,8 +64,6 @@ class WarehouseSerializer(serializers.ModelSerializer):
 
 
 class SlimWarehouseSerializer(serializers.ModelSerializer):
-    inventories = InventorySerializer(many=True, read_only=True)
-
     class Meta:
         model = Warehouse
         fields = (
@@ -93,7 +90,6 @@ class ProductSerializer(serializers.ModelSerializer):
 
 
 class SlimProductSerializer(serializers.ModelSerializer):
-
     class Meta:
         model = Product
         fields = (
