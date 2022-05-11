@@ -35,6 +35,17 @@ class InventorySerializer(serializers.ModelSerializer):
         )
 
 
+class SlimInventorySerializer(serializers.ModelSerializer):
+
+    class Meta:
+        model = Inventory
+        fields = (
+            "id",
+            "warehouse",
+            "product",
+        )
+
+
 class WarehouseSerializer(serializers.ModelSerializer):
     inventories = InventorySerializer(many=True, read_only=True)
     occupied_capacity = serializers.IntegerField(read_only=True)
@@ -53,6 +64,18 @@ class WarehouseSerializer(serializers.ModelSerializer):
         )
 
 
+class SlimWarehouseSerializer(serializers.ModelSerializer):
+    inventories = InventorySerializer(many=True, read_only=True)
+
+    class Meta:
+        model = Warehouse
+        fields = (
+            "id",
+            "name",
+            "city",
+        )
+
+
 class ProductSerializer(serializers.ModelSerializer):
     inventories = InventorySerializer(many=True, read_only=True)
     total_inventory = serializers.IntegerField(read_only=True)
@@ -66,4 +89,16 @@ class ProductSerializer(serializers.ModelSerializer):
             "volume",
             "total_inventory",
             "inventories",
+        )
+
+
+class SlimProductSerializer(serializers.ModelSerializer):
+
+    class Meta:
+        model = Product
+        fields = (
+            "id",
+            "name",
+            "description",
+            "volume",
         )

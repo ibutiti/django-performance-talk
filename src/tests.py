@@ -16,14 +16,13 @@ class WarehouseManagementTestCase(TestCase):
         ) = recipes.seed(scale=10)
         self.warehouse_url = reverse("warehouse-list")
         self.product_url = reverse("product-list")
-        self.inventory_url = reverse("inventory-list")
-        self.inventory_movement_url = reverse("inventory-movement-list")
 
     ############################################################################
     #                       warehouse tests                                    #
     ############################################################################
 
     def test_get_warehouses(self):
+        # with self.assertNumQueries(1):
         response = self.client.get(self.warehouse_url)
 
         self.assertEqual(response.status_code, 200)
