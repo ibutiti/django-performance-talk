@@ -17,7 +17,7 @@ You'll need these already setup to run this project:
 1. Create and activate a virtual environment
 
 ```
-python3 -m venv
+python3 -m venv venv
 source venv/bin/activate
 ```
 
